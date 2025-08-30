@@ -155,16 +155,42 @@ export class ToolExchange {
           exchangeUrl = `${EXCHANGE_URL}/${ORG}/business/policies`;
         }
         console.log(`Fetching policy list from Exchange at ${exchangeUrl} for target: ${target}`);
-        return await makeHttpRequest(exchangeUrl, {Authorization: `Basic ${process.env.EXCHANGE_CREDENTIAL}`});
+        const response = await makeHttpRequest(exchangeUrl, {Authorization: `Basic ${process.env.EXCHANGE_CREDENTIAL}`});
+        
+        // If response has content property, it's already formatted as ToolResponse (error case)
+        if (response && typeof response === 'object' && 'content' in response) {
+          return response;
+        }
+        
+        // Otherwise, wrap the successful response in proper MCP format
+        return {
+          content: [
+            {
+              type: 'text',
+              text: JSON.stringify(response, null, 2)
+            }
+          ]
+        };
 
       } else {
         const exchangeUrl = target === 'policy' ? `${EXCHANGE_URL}/${ORG}/business/policies` : `${EXCHANGE_URL}/${ORG}/${target}s`;
         console.log(`Fetching resources from Exchange at ${exchangeUrl} for target: ${target}`);
         const response = await makeHttpRequest(exchangeUrl, {Authorization: `Basic ${process.env.EXCHANGE_CREDENTIAL}`});
-        //console.dir(response, { depth: null, colors: true });
-        //return {content: [{ type: 'text', text: JSON.stringify(response, null, 2) }]};
-        return response;
-        //return {content: [{type: 'tool', tool_name: 'exchange', tool_output: response, _meta:{} as Record<string, unknown> }]};
+        
+        // If response has content property, it's already formatted as ToolResponse (error case)
+        if (response && typeof response === 'object' && 'content' in response) {
+          return response;
+        }
+        
+        // Otherwise, wrap the successful response in proper MCP format
+        return {
+          content: [
+            {
+              type: 'text',
+              text: JSON.stringify(response, null, 2)
+            }
+          ]
+        };
       }
     } catch (err: any) {
       console.log(`Error fetching resources from Exchange: ${err.message}`);
