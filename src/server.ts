@@ -129,8 +129,13 @@ async function handleSessionRequest(req: Request, res: Response) {
 app.get('/mcp', handleSessionRequest);
 app.delete('/mcp', handleSessionRequest);
 
-// Start the server
-const PORT = 3000;
+// Health check endpoint for Code Engine
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'healthy' });
+});
+
+// Start the server - Code Engine provides PORT environment variable
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`MCP Server listening on port ${PORT}`);
 });
