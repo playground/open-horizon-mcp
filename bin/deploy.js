@@ -14,7 +14,7 @@ const platform = process.env.npm_config_platform || 'amd64';
 const task = process.env.npm_config_task;
 const region = process.env.npm_config_region || 'global';
 const privateRegion = process.env.npm_config_private || false;
-const update = process.env.npm_config_create ? 'create' : 'update';
+const mode = process.env.npm_config_create == 'true' ? 'create' : 'update';
 const version = pkg.version;
 
 let imageName
@@ -113,7 +113,7 @@ let build = {
     let pEnv = ceAccess[env];
     let registry = privateRegion ? cr[region].private : cr[region].public;
     let tagImageName = `${registry}/${namespace}/${name}-${env}_${platform}:${version}`;
-    let arg = `ibmcloud ce application ${update} -n ${appName} --image ${tagImageName} --registry-secret ${pEnv.REGISTRY_ACCESS_SECRET}`
+    let arg = `ibmcloud ce application ${mode} -n ${appName} --image ${tagImageName} --registry-secret ${pEnv.REGISTRY_ACCESS_SECRET}`
     console.log(arg);
     Object.keys(pEnv).forEach((key) => {
       if(key != 'REGISTRY_ACCESS_SECRET') {

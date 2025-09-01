@@ -18,6 +18,7 @@
     "deploy:prod": "npm run code-engine --task=deploy --name=open-horizon-mcp --env=prod",
     "deploy:stage": "npm run code-engine --task=deploy --name=open-horizon-mcp  --env=stage",
     "deploy:dev": "npm run code-engine --task=deploy --name=open-horizon-mcp  --env=dev",
+    "deploy:example": "npm run deploy:dev --create=true --region=dockerhub --namespace=playbox21",
     "ibm-login": "ibmcloud login --sso && npm run select-target && npm run select-project",
     "ibm-cr-login": "ibmcloud cr login",
     "ibm-cr-quote": "ibmcloud cr quota",
