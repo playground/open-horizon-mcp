@@ -2,7 +2,6 @@ import log4js from 'log4js';
 import express from "express";
 import { randomUUID } from 'crypto';
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
 import { Request, Response } from 'express';
 import { SessionEntry } from './models/model';

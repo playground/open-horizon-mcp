@@ -1,8 +1,8 @@
 import log4js from 'log4js';
 import { z } from "zod";
-import { MCPToolResponse, ToolResponse } from '../models/model.js'
+import { MCPToolResponse, ToolResponse } from '../models/model'
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { makeHttpRequest, getErrorMessage } from '../services/common.js';
+import { makeHttpRequest, getErrorMessage } from '../services/common';
 import 'dotenv/config'
 
 const l = log4js.getLogger();
@@ -160,8 +160,7 @@ export class ToolExchange {
         // If response has content property, it's already formatted as ToolResponse (error case)
         if (response && typeof response === 'object' && 'content' in response) {
           return response;
-        }
-        
+        }        
         // Otherwise, wrap the successful response in proper MCP format
         return {
           content: [
@@ -171,7 +170,6 @@ export class ToolExchange {
             }
           ]
         };
-
       } else {
         const exchangeUrl = target === 'policy' ? `${EXCHANGE_URL}/${ORG}/business/policies` : `${EXCHANGE_URL}/${ORG}/${target}s`;
         console.log(`Fetching resources from Exchange at ${exchangeUrl} for target: ${target}`);
@@ -318,7 +316,6 @@ export class ToolExchange {
       default:
         return getErrorMessage(`Unknown action: ${action}`);
     }
-
     return result;
   }
 }

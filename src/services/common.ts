@@ -1,4 +1,4 @@
-import { ToolResponse } from "../models/model.js";
+import { ToolResponse } from "../models/model";
 
 export function getErrorMessage(err: any): ToolResponse {
   console.log('Show error message:', err);

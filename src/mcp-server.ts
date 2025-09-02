@@ -1,9 +1,9 @@
 import express from 'express';
 import { Request, Response } from 'express';
 import { IncomingHttpHeaders } from 'http';
-import { SessionEntry } from './models/model.js';
+import { SessionEntry } from './models/model';
 import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { ToolExchange } from './tools/tool-exchange.js';
+import { ToolExchange } from './tools/tool-exchange';
 
 /**
  * Factory to create and configure a new McpServer (tools/resources/prompts)

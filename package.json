@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc && node -e \"require('fs').chmodSync('dist/server.js', '755')\"",
     "start": "npm run build && node dist/server.js",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec npm start && ts-node src/server.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec ts-node src/server.ts",
     "inspector": "npx @modelcontextprotocol/inspector build/index.js",
     "build:docker:arm64": "docker buildx build --platform=linux/arm64 -t playbox21/oh-mcp-server_arm64:1.0.0 --load .",
     "build:docker:amd64": "docker buildx build --platform=linux/amd64 -t playbox21/oh-mcp-server_amd64:1.0.0 --load .",
