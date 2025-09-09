@@ -25,8 +25,9 @@
     "ibm-cr-region": "ibmcloud cr region",
     "ibm-cr-region-dallas": "ibmcloud cr region-set us-south",
     "ibm-registry-secret": "ibmcloud ce secret create --name global-registry --format registry --server icr.io --username iamapikey --password <your_iam_api_key>",
-    "select-project": "ibmcloud ce project select -n mcp-demo",
-    "select-target": "ibmcloud target -g Default",
+    "ibm-ce-select-project": "ibmcloud ce project select -n mcp-demo",
+    "ibm-ce-application-list": "ibmcloud ce application list",
+    "ibm-select-target": "ibmcloud target -g Default",
     "code-engine": "bin/deploy.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
